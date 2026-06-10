@@ -1,7 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
     <ProjectReference Include="..\domain\domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="common\results\" />
+    <Folder Include="dtos\" />
+    <Folder Include="features\" />
+    <Folder Include="services\" />
   </ItemGroup>
 
   <PropertyGroup>
