@@ -1,4 +1,4 @@
-﻿namespace domain.settings;
+﻿namespace Domain.Settings;
 
 public sealed class AppSettings(CorsSettings corsSettings, JwtSettings jwtSettings, DbSettings dbSettings)
 {

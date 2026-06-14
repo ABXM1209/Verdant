@@ -1,8 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\application\application.csproj" />
-    <ProjectReference Include="..\domain\domain.csproj" />
+    <ProjectReference Include="..\Applications\Applications.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,14 +20,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="migrations\" />
-    <Folder Include="sse\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="SSE\" />
   </ItemGroup>
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>infrastructure</RootNamespace>
   </PropertyGroup>
 
 </Project>

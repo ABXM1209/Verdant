@@ -1,6 +1,6 @@
-using domain.entities;
+using Domain.Entities;
 
-namespace domain.interfaces.repositories;
+namespace Domain.Interfaces.Repositories;
 
 public interface IAncestryRepository : IBaseRepository<Ancestry>
 {

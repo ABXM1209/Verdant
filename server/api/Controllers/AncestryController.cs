@@ -1,36 +1,45 @@
-﻿using application.dtos.entities;
-using domain.entities;
-using domain.interfaces.repositories;
+using Application.Common.Interfaces;
+using Application.DTOs.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace api.Controllers;
+namespace Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AncestryController(
-    IAncestryRepository ancestryRepository): BaseController
+public class AncestryController(IAncestryService ancestryService) : BaseController
 {
-
-    [HttpGet(Name = "GetAllAncestries")]
-    public async Task<IActionResult> GetAllAncestries()
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
     {
-        var allAncestries = await ancestryRepository.GetAllAsync();
-        return Ok(allAncestries);
+        var result = await ancestryService.GetAllAsync();
+        return Ok(result);
     }
 
-    [HttpPost(Name = "CreateAncestry")]
-    public async Task<IActionResult> CreateAncestry(CreateAncestryDto ancestryDto)
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> GetById(Guid id)
     {
-        var ancestry = new Ancestry
-        {
-            Name = ancestryDto.Name,
-            Lifespan = ancestryDto.Lifespan,
-            Size = ancestryDto.Size,
-            Elements = ancestryDto.Elements
-        };
-
-        await ancestryRepository.AddAsync(ancestry);
-        return Ok(ancestry);
+        var result = await ancestryService.GetByIdAsync(id);
+        return Ok(result);
     }
-    
+
+    [HttpPost]
+    public async Task<IActionResult> Create(CreateAncestryDto dto)
+    {
+        var result = await ancestryService.CreateAsync(dto);
+        return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> Update(EditAncestryDto dto)
+    {
+        var result = await ancestryService.UpdateAsync(dto);
+        return Ok(result);
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var deleted = await ancestryService.DeleteAsync(id);
+        return deleted ? NoContent() : NotFound();
+    }
 }

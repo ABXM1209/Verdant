@@ -1,6 +1,6 @@
-﻿using domain.enums;
+﻿using Domain.Enums;
 
-namespace domain.entities;
+namespace Domain.Entities;
 
 public sealed record Proficiency
 {

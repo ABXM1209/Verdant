@@ -1,8 +1,8 @@
-﻿using domain.exceptions;
-using domain.interfaces.utility;
+﻿using Domain.Exceptions;
+using Domain.Interfaces.Utilities;
 using DotNetEnv;
 
-namespace infrastructure.utils;
+namespace Infrastructure.Utils;
 
 public class EnvHelper : IEnvHelper
 {

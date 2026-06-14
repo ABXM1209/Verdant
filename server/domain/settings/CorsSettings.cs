@@ -1,4 +1,4 @@
-﻿namespace domain.settings;
+﻿namespace Domain.Settings;
 
 public class CorsSettings
 {

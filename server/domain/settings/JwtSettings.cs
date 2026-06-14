@@ -1,7 +1,7 @@
 ﻿using System.Text;
-using domain.exceptions;
+using Domain.Exceptions;
 
-namespace domain.settings;
+namespace Domain.Settings;
 
 public sealed class JwtSettings
 {

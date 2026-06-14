@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using domain.interfaces.repositories;
-using domain.entities;
-using Infrastructure.persistence;
+using Domain.Interfaces.Repositories;
+using Domain.Entities;
+using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace infrastructure.repositories;
+namespace Infrastructure.Repositories;
 
 public class PlayerRepository : IPlayerRepository
 {

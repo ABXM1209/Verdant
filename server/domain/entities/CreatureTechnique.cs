@@ -1,4 +1,4 @@
-﻿namespace domain.entities;
+﻿namespace Domain.Entities;
 
 public sealed record CreatureTechnique
 {

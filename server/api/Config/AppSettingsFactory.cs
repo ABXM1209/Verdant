@@ -1,6 +1,6 @@
-﻿using domain.settings;
+﻿using Domain.Settings;
 
-namespace api.Config;
+namespace Api.Config;
 
 public static class AppSettingsFactory
 {

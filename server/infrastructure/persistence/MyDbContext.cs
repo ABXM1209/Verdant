@@ -1,11 +1,11 @@
 ﻿using System.Text.Json;
-using domain.entities;
-using infrastructure.utils;
+using Domain.Entities;
+using Infrastructure.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Infrastructure.persistence;
+namespace Infrastructure.Persistence;
 
 public class MyDbContextFactory : IDesignTimeDbContextFactory<MyDbContext>
 {

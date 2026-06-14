@@ -1,4 +1,4 @@
-﻿namespace domain.exceptions;
+﻿namespace Domain.Exceptions;
 
 public class WrongTypeEnvironmentVariableException : Exception
 {

@@ -1,5 +1,4 @@
-﻿namespace domain.entities;
-
+﻿namespace Domain.Entities;
 public sealed record Player
 {
     //extends from creatre, has a profession and an ancestry

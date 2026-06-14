@@ -3,16 +3,15 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Authentication;
 using System.Security.Claims;
 using System.Text;
-using application.common.interfaces;
-using domain.entities;
-using domain.exceptions;
-using domain.interfaces.repositories;
-using domain.interfaces.utility;
-using domain.settings;
+using Application.Common.Interfaces;
+using Domain.Entities;
+using Domain.Exceptions;
+using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Utilities;
+using Domain.Settings;
 using Microsoft.IdentityModel.Tokens;
 
-namespace infrastructure.auth;
-
+namespace Infrastructure.Auth;
 
 public sealed class Jwt(JwtSettings jwtSettings, IUserRepository userRepository, IHashingUtils hashingUtils): IJwt
 {

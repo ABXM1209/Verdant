@@ -1,12 +1,13 @@
 ﻿using System.Net.Mime;
 using System.Text;
-using application.common.interfaces;
-using domain.exceptions;
-using domain.interfaces.repositories;
-using domain.interfaces.utility;
-using domain.settings;
-using Infrastructure.persistence;
-using infrastructure.repositories;
+using Application.Common.Interfaces;
+using Application.Services;
+using Domain.Exceptions;
+using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Utilities;
+using Domain.Settings;
+using Infrastructure.Persistence;
+using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -14,7 +15,7 @@ using NSwag;
 using NSwag.Generation.Processors.Security;
 using StackExchange.Redis;
 
-namespace api.Config;
+namespace Api.Config;
 
 public sealed class ServiceManager(IServiceCollection services, AppSettings appSettings, IWebHostEnvironment env) 
 {
@@ -30,7 +31,9 @@ public sealed class ServiceManager(IServiceCollection services, AppSettings appS
         ConfigureDbContext();
 
         ConfigureRepositories();
-        
+
+        ConfigureApplicationServices();
+
         ConfigureAuth();
 
         ConfigureControllersAndFeatures();
@@ -64,6 +67,15 @@ public sealed class ServiceManager(IServiceCollection services, AppSettings appS
         Console.WriteLine("DbContext configuration loaded.");
     }
 
+    private void ConfigureApplicationServices()
+    {
+        Console.WriteLine("Loading Application Services...");
+
+        services.AddScoped<IAncestryService, AncestryService>();
+
+        Console.WriteLine("Application Services configuration loaded.");
+    }
+
     private void ConfigureAuth()
     {
         Console.WriteLine("Loading Auth...");
@@ -78,7 +90,8 @@ public sealed class ServiceManager(IServiceCollection services, AppSettings appS
             throw;
         }
         
-        services.AddScoped<IJwt, infrastructure.auth.Jwt>();
+        //services.AddScoped<IJwt, Infrastructure.Auth.Jwt>();
+        services.AddScoped<IJwt, Infrastructure.Auth.Jwt>();
         services.AddScoped<IUserRepository, UserRepository>();
 
         // Configure JWT Authentication
@@ -178,8 +191,8 @@ public sealed class ServiceManager(IServiceCollection services, AppSettings appS
         
         
 
-        services.AddSingleton<IEnvHelper, infrastructure.utils.EnvHelper>();
-        services.AddSingleton<IHashingUtils, infrastructure.utils.HashingUtils>();
+        services.AddSingleton<IEnvHelper, Infrastructure.Utils.EnvHelper>();
+        services.AddSingleton<IHashingUtils, Infrastructure.Utils.HashingUtils>();
         
     }
 

@@ -1,59 +1,92 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using domain.entities;
-using domain.interfaces.repositories;
-using Infrastructure.persistence;
+using Domain.Entities;
+using Domain.Exceptions;
+using Domain.Interfaces.Repositories;
+using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace infrastructure.repositories;
+namespace Infrastructure.Repositories;
 
-public class AncestryRepository : IAncestryRepository
+public class AncestryRepository(MyDbContext dbContext) : IAncestryRepository
 {
-    private readonly MyDbContext _db;
-    private readonly DbSet<Ancestry> _set;
-
-    public AncestryRepository(MyDbContext db)
-    {
-        _db = db;
-        _set = db.Set<Ancestry>();
-    }
 
     public async Task<Ancestry> AddAsync(Ancestry entity)
     {
-        await _set.AddAsync(entity);
-        await _db.SaveChangesAsync();
-        return entity;
+        try
+        {
+            var created = await dbContext.Ancestries.AddAsync(entity);
+            await dbContext.SaveChangesAsync();
+            return created.Entity;
+        }
+        catch(DbUpdateException e)
+        {
+            throw new RepositoryException(e.Message, e);
+        }
     }
 
     public async Task<bool> DeleteAsync(Ancestry entity)
     {
-        _set.Remove(entity);
-        return await _db.SaveChangesAsync() > 0;
+        try
+        {
+            dbContext.Ancestries.Remove(entity);
+            await dbContext.SaveChangesAsync();
+            return true;
+        }
+        catch (DbUpdateException e)
+        {
+            throw new RepositoryException(e.Message, e);
+        }
     }
 
     public async Task<bool> DeleteAsync(Guid id)
     {
-        var entity = await _set.FindAsync(id);
-        if (entity == null) return false;
-        _set.Remove(entity);
-        return await _db.SaveChangesAsync() > 0;
+        try
+        {
+            var existing = await dbContext.Ancestries.FirstOrDefaultAsync(m => m.Id == id);
+            if (existing == null)
+                return false;
+    
+            dbContext.Ancestries.Remove(existing);
+            await dbContext.SaveChangesAsync();
+            return true;
+        }
+        catch (DbUpdateException e)
+        {
+            throw new RepositoryException(e.Message, e);
+        }
     }
 
     public async Task<Ancestry> FindByIdAsync(Guid id)
     {
-        return await _set.FindAsync(id);
+        var message = await dbContext.Ancestries
+            .FirstOrDefaultAsync(m => m.Id == id);
+
+        return message ?? throw new EntityNotFoundException("Ancestry not found, make sure the id is correct");
     }
 
     public async Task<IEnumerable<Ancestry>> GetAllAsync()
     {
-        return await _set.ToListAsync();
+        return await dbContext.Ancestries.ToListAsync();
     }
 
     public async Task<bool> UpdateAsync(Ancestry entity)
     {
-        _set.Update(entity);
-        return await _db.SaveChangesAsync() > 0;
+        try
+        {
+            var existing = await dbContext.Ancestries.FirstOrDefaultAsync(m => m.Id == entity.Id);
+            if (existing == null)
+                return false;
+    
+            dbContext.Entry(existing).CurrentValues.SetValues(entity);
+            await dbContext.SaveChangesAsync();
+            return true;
+        }
+        catch (DbUpdateException e)
+        {
+            throw new RepositoryException($"Failed to update the ancestry: {e.Message}", e);
+        }
     }
     
 }

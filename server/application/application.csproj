@@ -8,13 +8,13 @@
     <Folder Include="common\results\" />
     <Folder Include="dtos\" />
     <Folder Include="features\" />
-    <Folder Include="services\" />
   </ItemGroup>
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>application</RootNamespace>
   </PropertyGroup>
 
 </Project>

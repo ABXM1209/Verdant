@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace infrastructure.utils;
+namespace Infrastructure.Utils;
 
 public abstract class CookieHelper()
 {

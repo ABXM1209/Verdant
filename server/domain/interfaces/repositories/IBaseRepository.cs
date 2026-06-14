@@ -1,4 +1,4 @@
-﻿namespace domain.interfaces.repositories;
+﻿namespace Domain.Interfaces.Repositories;
 
 public interface IBaseRepository<T>
 {

@@ -1,4 +1,4 @@
-﻿namespace domain.interfaces.utility;
+﻿namespace Domain.Interfaces.Utilities;
 
 public interface IEnvHelper
 {

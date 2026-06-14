@@ -1,4 +1,4 @@
-﻿namespace application.common.interfaces;
+﻿namespace Application.Common.Interfaces;
 
 public interface IJwt
 {

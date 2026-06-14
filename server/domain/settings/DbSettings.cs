@@ -1,5 +1,4 @@
-﻿
-namespace domain.settings;
+﻿namespace Domain.Settings;
 
 public sealed class DbSettings()
 {

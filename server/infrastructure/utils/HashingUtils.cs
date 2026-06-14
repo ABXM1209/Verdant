@@ -1,8 +1,8 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-using domain.interfaces.utility;
+using Domain.Interfaces.Utilities;
 
-namespace infrastructure.utils;
+namespace Infrastructure.Utils;
 
 public class HashingUtils : IHashingUtils
 {

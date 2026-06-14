@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using domain.entities;
-using domain.interfaces.repositories;
-using Infrastructure.persistence;
+using Domain.Entities;
+using Domain.Interfaces.Repositories;
+using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace infrastructure.repositories;
+namespace Infrastructure.Repositories;
 
 public class ElementalAffinityRepository : IElementalAffinityRepository
 {

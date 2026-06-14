@@ -1,4 +1,4 @@
-using api.Config;
+using Api.Config;
 using DotNetEnv;
 
 namespace api;
