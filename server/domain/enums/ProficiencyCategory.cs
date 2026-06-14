@@ -4,6 +4,6 @@ public enum ProficiencyCategory
 {
     Combat,
     Knowledge,
-    Uility,
-    Othe
+    Utility,
+    Other
 }
