@@ -1,8 +1,7 @@
 ﻿namespace Domain.Enums;
 
-public enum RoleType
+public enum RoleTypeEnum
 {
     User,
-    Crew,
     Admin
 }

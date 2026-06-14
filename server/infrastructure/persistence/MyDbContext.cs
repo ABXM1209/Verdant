@@ -30,7 +30,9 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
     public DbSet<Proficiency> Proficiencies => Set<Proficiency>();
     public DbSet<CreatureProficiency> CreatureProficiencies => Set<CreatureProficiency>();
     public DbSet<Profession> Professions => Set<Profession>();
+    public DbSet<PlayerProfession> PlayerProfessions => Set<PlayerProfession>();
     public DbSet<Ancestry> Ancestries => Set<Ancestry>();
+    public DbSet<AncestralTrait> AncestralTraits => Set<AncestralTrait>();
     public DbSet<Item> Items => Set<Item>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -46,8 +48,15 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
             entity.HasKey(e => e.Id);
             entity.HasIndex(e => e.CreatureId).IsUnique();
             entity.HasOne<Creature>().WithOne().HasForeignKey<Player>(e => e.CreatureId).OnDelete(DeleteBehavior.Cascade);
-            entity.HasOne<Profession>().WithMany().HasForeignKey(e => e.ProfessionId).OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne<User>().WithMany().HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.Cascade);
             entity.HasOne<Ancestry>().WithMany().HasForeignKey(e => e.AncestryId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<PlayerProfession>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.HasOne<Player>().WithMany().HasForeignKey(e => e.PlayerId).OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne<Profession>().WithMany().HasForeignKey(e => e.ProfessionId).OnDelete(DeleteBehavior.Restrict);
         });
 
         modelBuilder.Entity<User>(entity =>
@@ -72,6 +81,10 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Name).IsRequired();
             entity.Property(e => e.Size).IsRequired();
+            entity.HasMany(e => e.AncestralTraits)
+                .WithOne()
+                .HasForeignKey(e => e.AncestryId)
+                .OnDelete(DeleteBehavior.Cascade);
             entity.Property(e => e.Elements)
                 .HasConversion(ancestryElementsConverter)
                 .HasColumnType("jsonb")
@@ -81,8 +94,8 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
         modelBuilder.Entity<ElementalAffinity>(entity =>
         {
             entity.HasKey(e => e.Id);
-            entity.Property(e => e.Element).IsRequired();
-            entity.HasOne<Creature>().WithMany().HasForeignKey(e => e.creatureId).OnDelete(DeleteBehavior.Cascade);
+            entity.Property(e => e.Elements).IsRequired();
+            entity.HasOne<Creature>().WithMany().HasForeignKey(e => e.CreatureId).OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Technique>(entity =>

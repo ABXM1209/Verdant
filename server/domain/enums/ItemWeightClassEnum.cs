@@ -1,6 +1,6 @@
 ﻿namespace Domain.Enums;
 
-public enum ItemWeightClass
+public enum ItemWeightClassEnum
 {
     Light,
     Medium,

@@ -3,7 +3,7 @@ using Application.DTOs.GameSession;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
-namespace Api.Hubs;
+namespace Api.Hubs.GameHub;
 
 [Authorize]
 public class GameHub : Hub<IGameHubClient>

@@ -26,7 +26,8 @@ public class AncestryService(IAncestryRepository ancestryRepository) : IAncestry
             Name = dto.Name,
             Lifespan = dto.Lifespan,
             Size = dto.Size,
-            Elements = dto.Elements
+            Elements = dto.Elements,
+            Description = dto.Description
         };
         var created = await ancestryRepository.AddAsync(ancestry);
         return ToDto(created);
@@ -39,6 +40,7 @@ public class AncestryService(IAncestryRepository ancestryRepository) : IAncestry
         ancestry.Lifespan = dto.Lifespan;
         ancestry.Size = dto.Size;
         ancestry.Elements = dto.Elements;
+        ancestry.Description = dto.Description;
         await ancestryRepository.UpdateAsync(ancestry);
         return ToDto(ancestry);
     }

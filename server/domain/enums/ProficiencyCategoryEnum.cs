@@ -1,6 +1,6 @@
 ﻿namespace Domain.Enums;
 
-public enum ProficiencyCategory
+public enum ProficiencyCategoryEnum
 {
     Combat,
     Knowledge,

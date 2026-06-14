@@ -1,5 +1,6 @@
 using Api.Config;
 using Api.Hubs;
+using Api.Hubs.GameHub;
 using DotNetEnv;
 
 namespace Api;

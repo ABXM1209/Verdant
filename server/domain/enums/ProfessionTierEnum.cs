@@ -1,6 +1,6 @@
 ﻿namespace Domain.Enums;
 
-public enum ProfessionTier
+public enum ProfessionTierEnum
 {
     Novice,
     Practitioner,

@@ -1,7 +1,9 @@
 ﻿using System.Net.Mime;
 using System.Text;
 using Application.Common.Interfaces;
+using Application.Common.Interfaces.Services.CRUD;
 using Application.Services;
+using Application.Services.CRUD;
 using Domain.Exceptions;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Utilities;
@@ -74,6 +76,18 @@ public sealed class ServiceManager(IServiceCollection services, AppSettings appS
         Console.WriteLine("Loading Application Services...");
 
         services.AddScoped<IAncestryService, AncestryService>();
+        services.AddScoped<ICreatureService, CreatureService>();
+        services.AddScoped<ITechniqueService, TechniqueService>();
+        services.AddScoped<IProficiencyService, ProficiencyService>();
+        services.AddScoped<IProfessionService, ProfessionService>();
+        services.AddScoped<IItemService, ItemService>();
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IElementalAffinityService, ElementalAffinityService>();
+        services.AddScoped<ICreatureTechniqueService, CreatureTechniqueService>();
+        services.AddScoped<ICreatureProficiencyService, CreatureProficiencyService>();
+        services.AddScoped<IPlayerService, PlayerService>();
+        services.AddScoped<IPlayerProfessionService, PlayerProfessionService>();
+        services.AddScoped<IAncestralTraitService, AncestralTraitService>();
 
         Console.WriteLine("Application Services configuration loaded.");
     }

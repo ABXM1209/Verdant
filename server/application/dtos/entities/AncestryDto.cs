@@ -1,17 +1,7 @@
 using System.ComponentModel.DataAnnotations;
+using Domain.Entities;
 
 namespace Application.DTOs.Entities;
-
-
-/**
- * public AuthorDto(Author entity)
-    {
-        Id = entity.Id;
-        Name = entity.Name;
-        Createdat = entity.Createdat;
-        BooksIds = entity.Books?.Select(b =>b.Id).ToList() ?? new List<string>();
-    }
- */
 
 public sealed record AncestryDto(Guid Id, string Name, int Lifespan, string Size, ICollection<string> Elements);
 
@@ -27,6 +17,7 @@ public sealed record CreateAncestryDto
     public string Size { get; init; } = string.Empty;
 
     public ICollection<string> Elements { get; init; } = new List<string>();
+    public string Description { get; init; } = string.Empty;
 }
 
 public sealed record EditAncestryDto
@@ -38,4 +29,5 @@ public sealed record EditAncestryDto
     public int Lifespan { get; init; }
     public string Size { get; init; } = string.Empty;
     public ICollection<string> Elements { get; init; } = new List<string>();
+    public string Description { get; init; } = string.Empty;
 }

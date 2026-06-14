@@ -1,4 +1,4 @@
-using Application.Common.Interfaces;
+using Application.Common.Interfaces.Services.CRUD;
 using Application.DTOs.Entities;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,6 +1,6 @@
 ﻿namespace Domain.Enums;
 
-public enum TechniqueType
+public enum TechniqueTypeEnum
 {
     Innate,
     Learnable,

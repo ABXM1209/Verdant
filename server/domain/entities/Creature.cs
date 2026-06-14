@@ -5,9 +5,9 @@ namespace Domain.Entities;
 public sealed record Creature
 {
     public Guid Id { get; init; } = Guid.NewGuid();
-    public CreatureType CreatureType { get; set; } = CreatureType.Player;
+    public CreatureTypeEnum CreatureType { get; set; } = CreatureTypeEnum.Minia;
     public string Name { get; set; } = string.Empty;
-    public GenderType Gender { get; set; } = GenderType.Unknown;
+    public GenderEnum Gender { get; set; } = GenderEnum.Unknown;
     public int Str { get; set; }
     public int Agi { get; set; }
     public int Dur { get; set; }
@@ -16,4 +16,11 @@ public sealed record Creature
     public int SpMax { get; set; }
     public int HpCurrent { get; set; }
     public int SpCurrent { get; set; }
+
+
+    public const int HPPerDur = 5;
+    public const int SPPerSpi = 5;
+    
+    public static int CalculateHpMax(int dur) => dur * HPPerDur;
+    public static int CalculateSpMax(int spi) => spi * SPPerSpi;
 }
