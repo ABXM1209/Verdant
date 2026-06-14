@@ -1,7 +1,8 @@
 using Api.Config;
+using Api.Hubs;
 using DotNetEnv;
 
-namespace api;
+namespace Api;
 
 public static class Program
 {
@@ -50,6 +51,7 @@ public static class Program
         app.UseAuthorization();
         app.MapControllers();
         app.MapHealthChecks("/health");
+        app.MapHub<GameHub>("/hubs/game");
         
         await app.RunAsync();
     }

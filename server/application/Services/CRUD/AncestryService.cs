@@ -1,9 +1,9 @@
-using Application.Common.Interfaces;
+using Application.Common.Interfaces.Services.CRUD;
 using Application.DTOs.Entities;
 using Domain.Entities;
 using Domain.Interfaces.Repositories;
 
-namespace Application.Services;
+namespace Application.Services.CRUD;
 
 public class AncestryService(IAncestryRepository ancestryRepository) : IAncestryService
 {

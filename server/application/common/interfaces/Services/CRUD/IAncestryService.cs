@@ -1,6 +1,6 @@
 using Application.DTOs.Entities;
 
-namespace Application.Common.Interfaces;
+namespace Application.Common.Interfaces.Services.CRUD;
 
 public interface IAncestryService
 {

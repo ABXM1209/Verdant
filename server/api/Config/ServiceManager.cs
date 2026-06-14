@@ -34,6 +34,8 @@ public sealed class ServiceManager(IServiceCollection services, AppSettings appS
 
         ConfigureApplicationServices();
 
+        ConfigureSignalR();
+
         ConfigureAuth();
 
         ConfigureControllersAndFeatures();
@@ -76,6 +78,15 @@ public sealed class ServiceManager(IServiceCollection services, AppSettings appS
         Console.WriteLine("Application Services configuration loaded.");
     }
 
+    private void ConfigureSignalR()
+    {
+        Console.WriteLine("Loading SignalR...");
+
+        services.AddSignalR();
+
+        Console.WriteLine("SignalR configuration loaded.");
+    }
+
     private void ConfigureAuth()
     {
         Console.WriteLine("Loading Auth...");
@@ -90,7 +101,6 @@ public sealed class ServiceManager(IServiceCollection services, AppSettings appS
             throw;
         }
         
-        //services.AddScoped<IJwt, Infrastructure.Auth.Jwt>();
         services.AddScoped<IJwt, Infrastructure.Auth.Jwt>();
         services.AddScoped<IUserRepository, UserRepository>();
 
@@ -115,10 +125,21 @@ public sealed class ServiceManager(IServiceCollection services, AppSettings appS
                 {
                     OnMessageReceived = context =>
                     {
-                        var token = context.Request.Cookies["accessToken"];
-                        if (token != null)
+                        // WebSocket connections (SignalR hubs) cannot set headers,
+                        // so the token arrives as ?access_token=... in the query string.
+                        var queryToken = context.Request.Query["access_token"];
+                        if (!string.IsNullOrEmpty(queryToken) &&
+                            context.HttpContext.Request.Path.StartsWithSegments("/hubs"))
                         {
-                            context.Token = token;
+                            context.Token = queryToken;
+                            return Task.CompletedTask;
+                        }
+
+                        // REST requests read the token from the cookie as before.
+                        var cookieToken = context.Request.Cookies["accessToken"];
+                        if (cookieToken != null)
+                        {
+                            context.Token = cookieToken;
                         }
 
                         return Task.CompletedTask;
