@@ -1,7 +1,7 @@
 class_name Playground extends Node2D
 
-@export var worldWidth:int = 1920	
-@export var worldHeight:int = 1080
+@export var worldWidth:int = 720	
+@export var worldHeight:int = 480
 
 
 
