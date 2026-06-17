@@ -7,7 +7,7 @@ A fantasy RPG game that is based on a tabletop game that I have personally desig
 #### 17.06.2026
 - Set up a moving player sprite in the primary scene.
   - The assets are borrowed from Michael Games: https://michaelgames.itch.io/2d-action-adventure-rpg-assets
-[!Player Sprite](client/godot/assets/graphics/playerGraphics/ExamplePlayerSprite.png)
+![Player Sprite](client/godot/assets/graphics/playerGraphics/ExamplePlayerSprite.png)
 
 
      
