@@ -10,5 +10,9 @@ A fantasy RPG game that is based on a tabletop game that I have personally desig
 ![Player Sprite](client/godot/assets/graphics/playerGraphics/ExamplePlayerSprite.png)
 - Set up simple idle and walking animations for the player.
 
+#### 19.06.2026
+- Implemented finite state machine pattern for the player.
+  - added idle and walking states.
+
 
      
