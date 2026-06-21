@@ -14,5 +14,10 @@ A fantasy RPG game that is based on a tabletop game that I have personally desig
 - Implemented finite state machine pattern for the player.
   - added idle and walking states.
 
+#### 21.06.2026
+- Tile Maps and Terrain
+  - Added camerabody to the player
+  - Adjusted the direction logic
+
 
      
