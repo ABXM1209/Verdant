@@ -9,15 +9,17 @@ A fantasy RPG game that is based on a tabletop game that I have personally desig
   - The assets are borrowed from Michael Games: https://michaelgames.itch.io/2d-action-adventure-rpg-assets
 ![Player Sprite](client/godot/assets/graphics/playerGraphics/ExamplePlayerSprite.png)
 - Set up simple idle and walking animations for the player.
-
 #### 19.06.2026
 - Implemented finite state machine pattern for the player.
   - added idle and walking states.
-
 #### 21.06.2026
 - Tile Maps and Terrain
   - Added camerabody to the player
   - Adjusted the direction logic
+#### 26.06.2026
+- Reorganized the godot project structure.
+- Added attack animation and shadow to the player
+  - Added attack audio clip
 
 
      
