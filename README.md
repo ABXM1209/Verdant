@@ -20,7 +20,9 @@ A fantasy RPG game that is based on a tabletop game that I have personally desig
 - Reorganized the godot project structure.
 - Added attack animation and shadow to the player
   - Added attack audio clip
-- 
+
+#### 27.06.2026
+- Added HitBoxes for Placeholder Plants and "HurtBox" for Player
 
 
      
