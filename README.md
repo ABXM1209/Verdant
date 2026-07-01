@@ -24,5 +24,8 @@ A fantasy RPG game that is based on a tabletop game that I have personally desig
 #### 27.06.2026
 - Added HitBoxes for Placeholder Plants and "HurtBox" for Player
 
+#### 01.07.2026
+- HurtBox fixes
+
 
      
