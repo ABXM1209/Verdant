@@ -27,5 +27,8 @@ A fantasy RPG game that is based on a tabletop game that I have personally desig
 #### 01.07.2026
 - HurtBox fixes
 
+#### 07.07.2026
+- Auto Camera Limits
+
 
      
