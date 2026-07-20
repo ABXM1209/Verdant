@@ -15,6 +15,7 @@ func _ready() -> void:
 	if playground:
 		position = Vector2(playground.worldWidth / 2.0, playground.worldHeight / 2.0)
 	
+	PlayerManager.player = self
 	state_machine.Initialize(self)
 	pass
 		
